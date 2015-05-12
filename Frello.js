@@ -12,11 +12,17 @@ angular.module('frello').controller('FrelloController', function($scope) {
 			$scope.tasks.push({ name: task, isCompleted: isCompleted });
 		}
 	}
-	$scope.removeTask = function(index) {
-		$scope.tasks.splice(index, 1);
+	$scope.removeTask = function(task) {
+		var task_index = $scope.tasks.indexOf(task);
+		if (task_index > -1) {
+			$scope.tasks.splice(task_index, 1);
+		}
 	}
 	$scope.toogleTaskList = function() {
 		$scope.todoListVisible = $scope.todoListVisible ? false : true;
+	}
+	$scope.changeTaskState = function(task) {
+		task.isCompleted = task.isCompleted ? false : true;
 	}
 });
 
